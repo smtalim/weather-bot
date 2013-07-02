@@ -1,0 +1,22 @@
+GEM
+  specs:
+    daemons (1.1.9)
+    eventmachine (1.0.3)
+    json (1.8.0)
+    mime-types (1.23)
+    rack (1.4.5)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    thin (1.5.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  json
+  rack
+  rest-client
+  thin
