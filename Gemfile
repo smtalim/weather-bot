@@ -1,5 +1,3 @@
 source 'https://rubygems.org'
-gem 'rack'
-gem 'thin'
 gem 'rest-client'
 gem 'json'
