@@ -48,4 +48,4 @@ module Forecast
 end 
 
 forecast = Forecast::Extract.new(37.423021, -122.083739)
-forecast.send_email(forecast.get_weather_forecast)
+#forecast.send_email(forecast.get_weather_forecast)
