@@ -7,7 +7,7 @@ module Forecast
     # Default API endpoint
     DEFAULT_FORECAST_IO_API_ENDPOINT = 'https://api.forecast.io'
     
-    API_KEY = '7646eeb396a97ec9481b2727933f0e03'
+    API_KEY = 'd605f92eeb2fc70f9bd796d96abb664c'
 
     Mail.defaults do
       delivery_method :smtp, {
@@ -32,8 +32,7 @@ module Forecast
       if !(parsed["alerts"].nil?)
         msg += "An alert has been issued: "+"#{parsed["alerts"][0]["title"]}"
       end
-      msg
-      #send_email(msg)
+      send_email(msg)
     end
     
     private
