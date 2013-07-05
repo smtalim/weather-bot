@@ -42,6 +42,7 @@ module Forecast
         text_part do
           body msg
         end
+      end
     end
   end  
 end 
