@@ -1,7 +1,6 @@
 require 'rest-client'
 require 'json'
 require 'mail'
-#require_relative '../../config/configapi'
 
 
 module Forecast  
@@ -9,24 +8,23 @@ module Forecast
     # Default API endpoint
     DEFAULT_FORECAST_IO_API_ENDPOINT = 'https://api.forecast.io'
     
-    #API_KEY = Forecast::Config[:API_KEY]
-
     Mail.defaults do
       delivery_method :smtp, {
         :port                 => 587,
         :address              => "smtp.sendgrid.net",
-        :user_name            => ENV['SENDGRID_USERNAME'],
-        :password             => ENV['SENDGRID_PASSWORD'],
+        :user_name            => ENV['SENDGRID_USERNAME'], # has been set on Heroku
+        :password             => ENV['SENDGRID_PASSWORD'], # has been set on Heroku
         :domain               => 'heroku.com',
         :authentication       => :plain,
         :enable_starttls_auto => true
       }
     end
    
-    def initialize(latitude, longitude)
-      @latitude  = latitude
-      @longitude = longitude
-      @forecast_url = "#{DEFAULT_FORECAST_IO_API_ENDPOINT}/forecast/#{ENV['API_KEY']}/#{@latitude},#{@longitude}"
+    def initialize
+      # ENV['API_KEY']    has been set on Heroku
+      # ENV['LATITUDE']   has been set on Heroku
+      # ENV['LONGITUDE']  has been set on Heroku
+      @forecast_url = "#{DEFAULT_FORECAST_IO_API_ENDPOINT}/forecast/#{ENV['API_KEY']}/#{ENV['LATITUDE']},#{ENV['LONGITUDE']}"
     end
     
     def get_weather_forecast
