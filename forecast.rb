@@ -12,11 +12,12 @@ module Forecast
     Mail.defaults do
       delivery_method :smtp, {
         :port      => 587,
-        :address   => "smtp.mandrillapp.com",
-        :user_name => ENV['MANDRILL_USERNAME'],
-        :password  => ENV['MANDRILL_APIKEY'],
+        :address   => "smtp.sendgrid.net",      #:address   => "smtp.mandrillapp.com",
+        :user_name => ENV['SENDGRID_USERNAME'], #:user_name => ENV['MANDRILL_USERNAME'],
+        :password  => ENV['SENDGRID_PASSWORD'], #:password  => ENV['MANDRILL_APIKEY'],
         :domain =>    'heroku.com',
-        :authentication => :plain
+        :authentication => :plain,
+        :enable_starttls_auto => true
       }
     end
    
@@ -28,9 +29,9 @@ module Forecast
     
     def get_weather_forecast
       parsed = JSON.parse(RestClient.get(URI.encode(@forecast_url)))
-      msg = "The current weather summary = "+"#{parsed["currently"]["summary"]}"+" and the temperature in F is "+"#{parsed["currently"]["temperature"].to_s}. "
+      msg = "The current weather summary = #{parsed["currently"]["summary"]} and the temperature in F is #{parsed["currently"]["temperature"].to_s}. "
       if !(parsed["alerts"].nil?)
-        msg += "An alert has been issued: "+"#{parsed["alerts"][0]["title"]}"
+        msg += "An alert has been issued: #{parsed["alerts"][0]["title"]}"
       end
       send_email(msg)
     end
