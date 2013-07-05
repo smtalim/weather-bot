@@ -37,6 +37,7 @@ module Forecast
     
     private
     def send_email(msg)
+      msg = "Test"
       mail = Mail.deliver do
         to      'satish.talim@gmail.com'
         from    'Satish Talim <satish@rubylearning.org>' # Your from name and email address
