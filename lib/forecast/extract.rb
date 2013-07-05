@@ -1,8 +1,8 @@
 require 'rest-client'
 require 'json'
 require 'mail'
-#require_relative '../../config/configapi'
-require_relative '../config/configapi'
+require_relative '../../config/configapi'
+
 
 module Forecast  
   class Extract  
