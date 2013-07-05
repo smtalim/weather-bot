@@ -1,22 +1,24 @@
 require 'rest-client'
 require 'json'
 require 'mail'
+#require_relative '../../config'
+require_relative 'config'
 
 module Forecast  
   class Extract  
     # Default API endpoint
     DEFAULT_FORECAST_IO_API_ENDPOINT = 'https://api.forecast.io'
     
-    API_KEY = 'd605f92eeb2fc70f9bd796d96abb664c'
+    API_KEY = Forecast::Config[:API_KEY]
 
     Mail.defaults do
       delivery_method :smtp, {
-        :port      => 587,
-        :address   => "smtp.sendgrid.net",      #:address   => "smtp.mandrillapp.com",
-        :user_name => ENV['SENDGRID_USERNAME'], #:user_name => ENV['MANDRILL_USERNAME'],
-        :password  => ENV['SENDGRID_PASSWORD'], #:password  => ENV['MANDRILL_APIKEY'],
-        :domain =>    'heroku.com',
-        :authentication => :plain,
+        :port                 => 587,
+        :address              => "smtp.sendgrid.net",
+        :user_name            => ENV['SENDGRID_USERNAME'],
+        :password             => ENV['SENDGRID_PASSWORD'],
+        :domain               => 'heroku.com',
+        :authentication       => :plain,
         :enable_starttls_auto => true
       }
     end
