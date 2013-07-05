@@ -43,10 +43,8 @@ module Forecast
           body msg
         end
     end
-    end
   end  
 end 
 
 forecast = Forecast::Extract.new(37.423021, -122.083739)
-msg = forecast.get_weather_forecast
-forecast.send_email(msg)
+forecast.send_email(forecast.get_weather_forecast)
