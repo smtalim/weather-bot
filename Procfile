@@ -1,2 +1,2 @@
-worker: bundle exec ruby forecast.rb -p $PORT
+web: bundle exec ruby forecast.rb -p $PORT
 
