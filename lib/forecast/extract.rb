@@ -1,7 +1,7 @@
 require 'rest-client'
 require 'json'
 require 'mail'
-require_relative '../../config/configapi'
+#require_relative '../../config/configapi'
 
 
 module Forecast  
@@ -9,7 +9,7 @@ module Forecast
     # Default API endpoint
     DEFAULT_FORECAST_IO_API_ENDPOINT = 'https://api.forecast.io'
     
-    API_KEY = Forecast::Config[:API_KEY]
+    #API_KEY = Forecast::Config[:API_KEY]
 
     Mail.defaults do
       delivery_method :smtp, {
@@ -26,7 +26,7 @@ module Forecast
     def initialize(latitude, longitude)
       @latitude  = latitude
       @longitude = longitude
-      @forecast_url = "#{DEFAULT_FORECAST_IO_API_ENDPOINT}/forecast/#{API_KEY}/#{@latitude},#{@longitude}"
+      @forecast_url = "#{DEFAULT_FORECAST_IO_API_ENDPOINT}/forecast/#{ENV['API_KEY'}/#{@latitude},#{@longitude}"
     end
     
     def get_weather_forecast
@@ -52,4 +52,3 @@ module Forecast
     end
   end  
 end 
-

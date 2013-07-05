@@ -1,3 +1,3 @@
 module Forecast
-  Config = {API_KEY: '27c614eebddc81a8024ed68cbaea718b'}
+  Config = {API_KEY: 'a20d65b64d8434a12144abe252d8c858'}
 end
