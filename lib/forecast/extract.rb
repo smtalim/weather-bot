@@ -26,7 +26,7 @@ module Forecast
     def initialize(latitude, longitude)
       @latitude  = latitude
       @longitude = longitude
-      @forecast_url = "#{DEFAULT_FORECAST_IO_API_ENDPOINT}/forecast/#{ENV['API_KEY'}/#{@latitude},#{@longitude}"
+      @forecast_url = "#{DEFAULT_FORECAST_IO_API_ENDPOINT}/forecast/#{ENV['API_KEY']}/#{@latitude},#{@longitude}"
     end
     
     def get_weather_forecast
