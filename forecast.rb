@@ -13,8 +13,10 @@ module Forecast
       delivery_method :smtp, {
         :port      => 587,
         :address   => "smtp.mandrillapp.com",
-        :user_name => ENV["app16660141@heroku.com"],
-        :password  => ENV["lo1IPUOahHfqcMXA8TlrqA"]
+        :user_name => ENV['MANDRILL_USERNAME'],
+        :password  => ENV['MANDRILL_APIKEY']
+        :domain =>    'heroku.com',
+        :authentication => :plain
       }
     end
    
