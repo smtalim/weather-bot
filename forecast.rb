@@ -32,12 +32,12 @@ module Forecast
       if !(parsed["alerts"].nil?)
         msg += "An alert has been issued: "+"#{parsed["alerts"][0]["title"]}"
       end
-      send_email(msg)
+      msg
+      #send_email(msg)
     end
     
     private
     def send_email(msg)
-      msg = "Test"
       mail = Mail.deliver do
         to      'satish.talim@gmail.com'
         from    'Satish Talim <satish@rubylearning.org>' # Your from name and email address
