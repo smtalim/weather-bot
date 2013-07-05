@@ -1,6 +1,6 @@
 require 'rest-client'
 require 'json'
-require 'logger'
+require 'mail'
 
 module Forecast  
   class Extract  
@@ -8,6 +8,15 @@ module Forecast
     DEFAULT_FORECAST_IO_API_ENDPOINT = 'https://api.forecast.io'
     
     API_KEY = '7646eeb396a97ec9481b2727933f0e03'
+
+    Mail.defaults do
+      delivery_method :smtp, {
+        :port      => 587,
+        :address   => "smtp.mandrillapp.com",
+        :user_name => ENV["app16660141@heroku.com"],
+        :password  => ENV["lo1IPUOahHfqcMXA8TlrqA"]
+      }
+    end
    
     def initialize(latitude, longitude)
       @latitude  = latitude
@@ -26,7 +35,14 @@ module Forecast
   end  
 end 
 
-log = Logger.new(STDOUT)
-log.level = Logger::INFO
 forecast = Forecast::Extract.new(37.423021, -122.083739)
-log.info forecast.get_weather_forecast
+
+mail = Mail.deliver do
+  to      'satish.talim@gmail.com'
+  from    'Satish Talim <satish@rubylearning.org>' # Your from name and email address
+  subject 'Your weather report!'
+
+  text_part do
+    body forecast.get_weather_forecast
+  end
+end
