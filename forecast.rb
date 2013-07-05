@@ -32,17 +32,21 @@ module Forecast
       end
       return msg
     end
+    
+    def send_email(msg)
+      mail = Mail.deliver do
+        to      'satish.talim@gmail.com'
+        from    'Satish Talim <satish@rubylearning.org>' # Your from name and email address
+        subject 'Your weather report!'
+
+        text_part do
+          body msg
+        end
+    end
+    end
   end  
 end 
 
 forecast = Forecast::Extract.new(37.423021, -122.083739)
-
-mail = Mail.deliver do
-  to      'satish.talim@gmail.com'
-  from    'Satish Talim <satish@rubylearning.org>' # Your from name and email address
-  subject 'Your weather report!'
-
-  text_part do
-    body forecast.get_weather_forecast
-  end
-end
+msg = forecast.get_weather_forecast
+forecast.send_email(msg)
