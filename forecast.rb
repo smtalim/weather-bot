@@ -30,9 +30,10 @@ module Forecast
       if !(parsed["alerts"].nil?)
         msg += "An alert has been issued: "+"#{parsed["alerts"][0]["title"]}"
       end
-      return msg
+      send_email(msg)
     end
     
+    private
     def send_email(msg)
       mail = Mail.deliver do
         to      'satish.talim@gmail.com'
@@ -48,4 +49,4 @@ module Forecast
 end 
 
 forecast = Forecast::Extract.new(37.423021, -122.083739)
-#forecast.send_email(forecast.get_weather_forecast)
+forecast.get_weather_forecast
