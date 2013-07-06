@@ -2,7 +2,6 @@ require 'rest-client'
 require 'json'
 require 'mail'
 
-
 module Forecast  
   class Extract  
     # Default API endpoint
